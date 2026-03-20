@@ -619,7 +619,7 @@ export default function GafferAI() {
   const css = `
     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap");
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%;background:#0a0f14;color:#f1f5f9;font-family:'Barlow',sans-serif}
+    html,body{eight:100%;background:#0a0f14;color:#f1f5f9;font-family:'Barlow',sans-serif}
     .app{min-height:100vh;background:radial-gradient(ellipse 120% 60% at 50% -10%,rgba(34,211,238,0.06) 0%,transparent 60%),#0a0f14}
     .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;background:rgba(10,15,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.08)}
     .nav-logo{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;letter-spacing:1px;cursor:pointer}
