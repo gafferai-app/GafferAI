@@ -8,12 +8,13 @@ export default async function handler(req, res) {
     const prices = {
       starter: "price_1TC5FD3K0hcsqeHWoFeZpOs8",
       pro: "price_1TC5F93K0hcsqeHWcCwxYsVU",
+      elite:"price_1TDrju3K0hcsqeHWf1dqQIY6",
     };
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       customer_email: email,
       line_items: [{ price: prices[plan], quantity: 1 }],
-      mode: plan === "pro" ? "subscription" : "payment",
+      mode: (plan === "pro" || plan === "elite") ? "subscription" : "payment",
       success_url: `https://gaffer-ai-eight.vercel.app?upgraded=${plan}`,
       cancel_url: "https://gaffer-ai-eight.vercel.app",
     });
