@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0f14" />
+    <meta name="google-site-verification" content="eQnHRzdkNIKJsmbLQGpjSB0hv3J6oVX-cANX5STwk9Y" />
+    <meta name="description" content="GafferAI — AI toolkit for grassroots football coaches. Generate training plans, match reports and more in seconds." />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&family=Barlow:wght@300&display=swap" rel="stylesheet"/>
+    <title>GafferAI — AI Toolkit for Grassroots Football Coaches</title>
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}
+      body{background:#0a0f14;color:#f1f5f9;font-family:'Barlow',sans-serif}
+      #initial-loader{
+        position:fixed;inset:0;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;
+        background:#0a0f14;z-index:9999;
+        transition:opacity 0.4s ease;
+      }
+      #initial-loader.hidden{opacity:0;pointer-events:none}
+      .init-logo{width:88px;height:88px;border-radius:18px;margin-bottom:28px;
+        box-shadow:0 0 40px rgba(74,222,128,0.25);
+        animation:pulse 2s ease-in-out infinite}
+      .init-title{font-family:'Barlow Condensed',sans-serif;font-size:44px;font-weight:900;
+        letter-spacing:2px;color:#f1f5f9;margin-bottom:6px}
+      .init-title span{color:#4ade80}
+      .init-sub{font-size:13px;color:#64748b;margin-bottom:44px;font-weight:300;letter-spacing:1px}
+      .init-bar{width:180px;height:3px;background:rgba(255,255,255,0.06);
+        border-radius:3px;overflow:hidden}
+      .init-bar-fill{height:100%;width:40%;border-radius:3px;
+        background:linear-gradient(90deg,transparent,#4ade80,transparent);
+        animation:shimmer 1.5s ease-in-out infinite}
+      .init-glow{position:absolute;width:350px;height:350px;border-radius:50%;
+        background:radial-gradient(circle,rgba(74,222,128,0.07) 0%,transparent 70%);
+        pointer-events:none}
+      @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.96);opacity:0.8}}
+      @keyframes shimmer{0%{transform:translateX(-200%)}100%{transform:translateX(400%)}}
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <!-- Initial loader shows instantly before React loads -->
+    <div id="initial-loader">
+      <div class="init-glow"></div>
+      <img src="/logo192.png" alt="GafferAI" class="init-logo"/>
+      <div class="init-title">Gaffer<span>AI</span></div>
+      <div class="init-sub">AI toolkit for grassroots coaches</div>
+      <div class="init-bar"><div class="init-bar-fill"></div></div>
+    </div>
+
+    <div id="root"></div>
+
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(function(){ loader.remove(); }, 400);
+          }
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
