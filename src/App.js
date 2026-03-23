@@ -552,16 +552,19 @@ function AuthScreen({ onAuth }) {
           const generationsLimit = refCode ? 10 : 5;
 
           // Try to create the profile row — silently ignore errors (RLS handles it via trigger)
-          try {
-            await supabase.from("profiles").upsert({
-              id: data.user.id,
-              email: data.user.email,
-              plan: "free",
-              generations_used: 0,
-              generations_limit: generationsLimit,
-              created_at: new Date().toISOString(),
-            }, { onConflict: "id", ignoreDuplicates: true });
-          } catch (_) { /* DB trigger will handle profile creation server-side */ }
+          const { error: profileError } = await supabase.from("profiles").upsert({
+  id: data.user.id,
+  email: data.user.email,
+  plan: "free",
+  generations_used: 0,
+  generations_limit: generationsLimit,
+  created_at: new Date().toISOString(),
+}, { onConflict: "id" });
+
+if (profileError) {
+  console.error("Profile creation error:", profileError.message);
+  // Don't block signup — a DB trigger or manual fix can recover this
+}
 
           // Handle referral bonus (best-effort, don't block signup)
           if (refCode) {
