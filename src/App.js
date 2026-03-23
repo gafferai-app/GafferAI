@@ -562,10 +562,9 @@ function AuthScreen({ onAuth }) {
 }, { onConflict: "id" });
 
 if (profileError) {
-  console.error("Profile creation error:", profileError.message);
-  // Don't block signup — a DB trigger or manual fix can recover this
+  console.error("Profile upsert error:", profileError.message);
+  // Don't block the user — auth succeeded, profile can be recovered
 }
-
           // Handle referral bonus (best-effort, don't block signup)
           if (refCode) {
             try {
