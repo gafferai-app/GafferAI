@@ -22,13 +22,13 @@ const supabase = createClient(
 // Replace these price IDs with your actual ones from Stripe Dashboard → Products
 const PLAN_CONFIG = {
   // Starter Week — £1 one-time
-  "price_starter": { plan: "trial", generations_limit: 10 },
+  "price_1TC5FD3K0hcsqeHWoFeZpOs8": { plan: "trial", generations_limit: 10 },
 
   // Pro Plan — £4.99/month
-  "price_pro": { plan: "pro", generations_limit: 35 },
+  "price_1TC5F93K0hcsqeHWcCwxYsVU": { plan: "pro", generations_limit: 35 },
 
   // Elite Plan — £8.99/month
-  "price_elite": { plan: "elite", generations_limit: 70 },
+  "price_1TDrju3K0hcsqeHWf1dqQIY6": { plan: "elite", generations_limit: 70 },
 };
 
 // Disable body parsing — Stripe needs the raw body to verify the signature
