@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+
+    <!-- Background radial glow -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d1f0d"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+
+    <!-- Outer ring gradient — bright green top, dark green bottom -->
+    <linearGradient id="ringOuter" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%"   stop-color="#00ff55"/>
+      <stop offset="45%"  stop-color="#00cc44"/>
+      <stop offset="100%" stop-color="#005522"/>
+    </linearGradient>
+
+    <!-- Inner ring gradient -->
+    <linearGradient id="ringInner" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%"   stop-color="#00dd44"/>
+      <stop offset="100%" stop-color="#003311"/>
+    </linearGradient>
+
+    <!-- Green glow filter for rings -->
+    <filter id="ringGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle glow for GAFFER text -->
+    <filter id="textGlow" x="-5%" y="-20%" width="110%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Green glow for AI text -->
+    <filter id="greenGlow" x="-10%" y="-30%" width="120%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0  0 1 0 0 0.5  0 0 0 0 0.1  0 0 0 0.8 0" result="coloured"/>
+      <feMerge>
+        <feMergeNode in="coloured"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+  </defs>
+
+  <!-- ── Background ─────────────────────────────────────────────── -->
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+
+  <!-- ── Ambient green glow behind ring ─────────────────────────── -->
+  <circle cx="256" cy="256" r="200" fill="none"
+    stroke="#00ff44" stroke-width="60" opacity="0.06"/>
+
+  <!-- ── Outer ring — thick, with gap at top-right ──────────────── -->
+  <!-- Gap: ~55° at roughly the 1 o'clock position               -->
+  <!-- Circumference at r=182: ~1144px                           -->
+  <!-- 55° gap = 1144 * 55/360 ≈ 175px gap                      -->
+  <circle cx="256" cy="256" r="182"
+    fill="none"
+    stroke="url(#ringOuter)"
+    stroke-width="14"
+    stroke-dasharray="969 175"
+    stroke-dashoffset="88"
+    stroke-linecap="round"
+    filter="url(#ringGlow)"/>
+
+  <!-- ── Inner ring — thinner, same gap position ────────────────── -->
+  <!-- Circumference at r=160: ~1005px, gap ≈ 154px              -->
+  <circle cx="256" cy="256" r="160"
+    fill="none"
+    stroke="url(#ringInner)"
+    stroke-width="4"
+    stroke-dasharray="851 154"
+    stroke-dashoffset="77"
+    stroke-linecap="round"
+    opacity="0.75"/>
+
+  <!-- ── Horizontal divider line across the ring ────────────────── -->
+  <line x1="74" y1="290" x2="438" y2="290"
+    stroke="url(#ringOuter)"
+    stroke-width="3"
+    stroke-linecap="round"
+    opacity="0.85"/>
+
+  <!-- ── GAFFER ─────────────────────────────────────────────────── -->
+  <text
+    x="256" y="268"
+    font-family="'Arial Black', 'Impact', 'Helvetica Neue', sans-serif"
+    font-size="102"
+    font-weight="900"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="4"
+    filter="url(#textGlow)">GAFFER</text>
+
+  <!-- ── AI — green, below divider ─────────────────────────────── -->
+  <text
+    x="256" y="345"
+    font-family="'Arial Black', 'Impact', 'Helvetica Neue', sans-serif"
+    font-size="52"
+    font-weight="900"
+    fill="#00ee55"
+    text-anchor="middle"
+    letter-spacing="22"
+    filter="url(#greenGlow)">AI</text>
+
+  <!-- Small dashes flanking AI (matching original) -->
+  <line x1="118" y1="330" x2="180" y2="330"
+    stroke="#00bb44" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <line x1="332" y1="330" x2="394" y2="330"
+    stroke="#00bb44" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+
+</svg>
